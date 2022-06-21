@@ -1,7 +1,8 @@
 class CreateAuthors < ActiveRecord::Migration[6.1]
   def change
     create_table :authors do |t|
-      t.string :author
+      t.string :name
+      t.string :books
       
       t.timestamps
     end
