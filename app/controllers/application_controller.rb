@@ -20,6 +20,12 @@ class ApplicationController < Sinatra::Base
     books.to_json
   end
 
+  # not working
+  get "/books/title_ascending" do 
+    books = Book.title_ascending
+    books.to_json
+  end
+
   post "/books" do 
     new_book = Book.create(
       title: params[:title],
