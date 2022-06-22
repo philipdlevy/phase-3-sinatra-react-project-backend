@@ -20,9 +20,21 @@ class ApplicationController < Sinatra::Base
     books.to_json
   end
 
-  # not working
+  ########## not working
   get "/books/title_ascending" do 
     books = Book.title_ascending
+    books.to_json
+  end
+  get "/books/title_descending" do 
+    books = Book.title_descending
+    books.to_json
+  end
+  get "/books/price_ascending" do
+    books = Book.price_ascending
+    books.to_json
+  end
+  get "/books/price_descending" do
+    books = Book.price_descending
     books.to_json
   end
 
@@ -66,6 +78,16 @@ class ApplicationController < Sinatra::Base
 
   get "/authors/:id" do 
     authors = Author.find(params[:id])
+    authors.to_json
+  end
+
+  ######### not working
+  get "/authors/name_ascending" do 
+    authors = Author.name_ascending
+    authors.to_json
+  end
+  get "/authors/name_descending" do 
+    authors = Author.name_descending
     authors.to_json
   end
 
