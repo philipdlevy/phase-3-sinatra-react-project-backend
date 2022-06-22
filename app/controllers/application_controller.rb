@@ -1,12 +1,12 @@
-
+require 'pry'
 
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
   # Add your routes here
-  get "/" do
-    { message: "Good luck with your project!" }.to_json
-  end
+  # get "/" do
+  #   { message: "Good luck with your project!" }.to_json
+  # end
 
 
 # Book routes
@@ -21,8 +21,8 @@ class ApplicationController < Sinatra::Base
   end
 
   ########## not working
-  get "/books/title_ascending" do 
-    books = Book.title_ascending
+  get "/books/all/title_ascending" do 
+    books = Book.all.title_ascending
     books.to_json
   end
   get "/books/title_descending" do 
