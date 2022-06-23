@@ -20,23 +20,24 @@ class ApplicationController < Sinatra::Base
     books.to_json
   end
 
-  ########## not working
+
   get "/books/all/title_ascending" do 
     books = Book.all.title_ascending
     books.to_json
   end
-  get "/books/title_descending" do 
-    books = Book.title_descending
+  get "/books/all/title_descending" do 
+    books = Book.all.title_descending
     books.to_json
   end
-  get "/books/price_ascending" do
-    books = Book.price_ascending
+  get "/books/all/by_price_ascending" do
+    books = Book.all.by_price_ascending
     books.to_json
   end
-  get "/books/price_descending" do
-    books = Book.price_descending
+  get "/books/all/by_price_descending" do
+    books = Book.all.by_price_descending
     books.to_json
   end
+
 
   post "/books" do 
     new_book = Book.create(
@@ -81,15 +82,15 @@ class ApplicationController < Sinatra::Base
     authors.to_json
   end
 
-  ######### not working
-  get "/authors/name_ascending" do 
-    authors = Author.name_ascending
+  get "/authors/all/name_ascending" do 
+    authors = Author.all.name_ascending
     authors.to_json
   end
-  get "/authors/name_descending" do 
-    authors = Author.name_descending
+  get "/authors/all/name_descending" do 
+    authors = Author.all.name_descending
     authors.to_json
   end
+
 
   post "/authors" do 
     new_author = Author.create(
