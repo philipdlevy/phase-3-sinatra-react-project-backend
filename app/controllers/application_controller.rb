@@ -79,43 +79,43 @@ class ApplicationController < Sinatra::Base
 # Author routes
   get "/authors" do 
     authors = Author.all
-    authors.to_json
+    authors.to_json(include: :books)
   end
 
-  get "/authors/:id" do 
-    authors = Author.find(params[:id])
-    authors.to_json
-  end
+  # get "/authors/:id" do 
+  #   authors = Author.find(params[:id])
+  #   authors.to_json
+  # end
 
-  get "/authors/all/name_ascending" do 
-    authors = Author.all.name_ascending
-    authors.to_json
-  end
-  get "/authors/all/name_descending" do 
-    authors = Author.all.name_descending
-    authors.to_json
-  end
+  # get "/authors/all/name_ascending" do 
+  #   authors = Author.all.name_ascending
+  #   authors.to_json
+  # end
+  # get "/authors/all/name_descending" do 
+  #   authors = Author.all.name_descending
+  #   authors.to_json
+  # end
 
 
-  post "/authors" do 
-    new_author = Author.create(
-      name: params[:name]
-    )
-    new_author.to_json
-  end
+  # post "/authors" do 
+  #   new_author = Author.create(
+  #     name: params[:name]
+  #   )
+  #   new_author.to_json
+  # end
 
-  patch "/authors/:id" do
-    author = Author.find(params[:id])
-    author.update(
-      name: params[:name],
-      )
-      author.to_json
-  end
+  # patch "/authors/:id" do
+  #   author = Author.find(params[:id])
+  #   author.update(
+  #     name: params[:name],
+  #     )
+  #     author.to_json
+  # end
 
-  delete "/authors/:id" do
-    authors = Author.find(params[:id])
-    authors.destroy
-    authors.to_json
-  end
+  # delete "/authors/:id" do
+  #   authors = Author.find(params[:id])
+  #   authors.destroy
+  #   authors.to_json
+  # end
 
 end
