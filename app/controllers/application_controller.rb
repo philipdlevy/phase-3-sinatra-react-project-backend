@@ -40,13 +40,19 @@ class ApplicationController < Sinatra::Base
 
 
   post "/books" do 
-    new_book = Book.create(
+    # use author name to see if that author exists
+    # if yes, create that book in the authors collection
+    # if no, create an author and then create that book in that authors collection
+    # active record associations
+    author = Author.find_or_create_by(name: params[:author_name])
+    
+    # author = Author.find_by(id: params[:author_id])
+
+    new_book = author.books.create(
       title: params[:title],
-      author_name: params[:author_name],
       description: params[:description],
       price: params[:price],
-      pages: params[:pages],
-      author_id: params[:author_id]
+      pages: params[:pages]
     )
     new_book.to_json
   end
@@ -55,7 +61,6 @@ class ApplicationController < Sinatra::Base
     book = Book.find(params[:id])
     book.update(
       title: params[:title],
-      author_name: params[:author_name],
       description: params[:description],
       price: params[:price],
       pages: params[:pages],
