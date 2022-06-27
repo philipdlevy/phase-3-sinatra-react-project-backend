@@ -12,7 +12,7 @@ class ApplicationController < Sinatra::Base
 # Book routes
   get "/books" do 
     books = Book.all
-    books.to_json
+    books.to_json(include: :author)
   end
 
   get "/books/:id" do 
@@ -75,17 +75,16 @@ class ApplicationController < Sinatra::Base
   end
 
 
-
 # Author routes
   get "/authors" do 
     authors = Author.all
     authors.to_json(include: :books)
   end
 
-  # get "/authors/:id" do 
-  #   authors = Author.find(params[:id])
-  #   authors.to_json
-  # end
+  get "/authors/:id" do 
+    authors = Author.find(params[:id])
+    authors.to_json
+  end
 
   # get "/authors/all/name_ascending" do 
   #   authors = Author.all.name_ascending
