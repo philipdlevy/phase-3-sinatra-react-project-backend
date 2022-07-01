@@ -2,14 +2,9 @@ require 'pry'
 
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
-  
-  # Add your routes here
-  # get "/" do
-  #   { message: "Good luck with your project!" }.to_json
-  # end
 
 
-# Book routes
+  # Book routes
   get "/books" do 
     books = Book.all
     books.to_json(include: :author)
@@ -21,22 +16,22 @@ class ApplicationController < Sinatra::Base
   end
 
 
-  get "/books/all/title_ascending" do 
-    books = Book.all.title_ascending
-    books.to_json
-  end
-  get "/books/all/title_descending" do 
-    books = Book.all.title_descending
-    books.to_json
-  end
-  get "/books/all/by_price_ascending" do
-    books = Book.all.by_price_ascending
-    books.to_json
-  end
-  get "/books/all/by_price_descending" do
-    books = Book.all.by_price_descending
-    books.to_json
-  end
+  # get "/books/all/title_ascending" do 
+  #   books = Book.all.title_ascending
+  #   books.to_json
+  # end
+  # get "/books/all/title_descending" do 
+  #   books = Book.all.title_descending
+  #   books.to_json
+  # end
+  # get "/books/all/by_price_ascending" do
+  #   books = Book.all.by_price_ascending
+  #   books.to_json
+  # end
+  # get "/books/all/by_price_descending" do
+  #   books = Book.all.by_price_descending
+  #   books.to_json
+  # end
 
 
   post "/books" do 
@@ -52,7 +47,7 @@ class ApplicationController < Sinatra::Base
       title: params[:title],
       description: params[:description],
       price: params[:price],
-      pages: params[:pages]
+      pages: params[:pages],
     )
     new_book.to_json
   end
@@ -64,18 +59,39 @@ class ApplicationController < Sinatra::Base
       description: params[:description],
       price: params[:price],
       pages: params[:pages],
-      )
-      book.to_json
-  end
-
-  delete "/books/:id" do
-    book = Book.find(params[:id])
-    book.destroy
+      # author_name: params[:author_name],
+    )
     book.to_json
+    
+    author = book.author
+    author.update(
+      name: params[:author_name]
+      # author.save
+    )
+    author.to_json
+
+    # binding.pry
+    # author = Author.find(params[:id])
+    # author.update(
+    #   name: params[:author_name],
+    #   )
+    #   author.to_json
+      # binding.pry
   end
 
+  # patch "/authors/:id" do
+  #   author = Author.find(params[:id])
+  #   author.update(
+  #     name: params[:name],
+  #     )
+  #     author.to_json
+  # end
 
-# Author routes
+
+
+
+
+  # Author routes
   get "/authors" do 
     authors = Author.all
     authors.to_json(include: :books)
@@ -103,13 +119,14 @@ class ApplicationController < Sinatra::Base
   #   new_author.to_json
   # end
 
-  # patch "/authors/:id" do
-  #   author = Author.find(params[:id])
-  #   author.update(
-  #     name: params[:name],
-  #     )
-  #     author.to_json
-  # end
+  patch "/authors/:id" do
+    author = Author.find(params[:id])
+    author.update(
+      name: params[:name],
+      )
+      author.to_json
+      binding.pry
+  end
 
   # delete "/authors/:id" do
   #   authors = Author.find(params[:id])
