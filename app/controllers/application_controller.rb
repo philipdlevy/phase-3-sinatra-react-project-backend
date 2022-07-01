@@ -61,7 +61,6 @@ class ApplicationController < Sinatra::Base
       pages: params[:pages],
       # author_name: params[:author_name],
     )
-    book.to_json
     
     author = book.author
     author.update(
@@ -69,7 +68,7 @@ class ApplicationController < Sinatra::Base
       # author.save
     )
     author.to_json
-
+    book.to_json
     # binding.pry
     # author = Author.find(params[:id])
     # author.update(
