@@ -69,13 +69,11 @@ class ApplicationController < Sinatra::Base
     book.to_json
   end
 
-  # patch "/authors/:id" do
-  #   author = Author.find(params[:id])
-  #   author.update(
-  #     name: params[:name],
-  #     )
-  #     author.to_json
-  # end
+  delete "/books/:id" do
+    books = Book.find(params[:id])
+    books.destroy
+    books.to_json
+  end
 
 
 
