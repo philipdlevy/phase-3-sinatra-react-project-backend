@@ -59,23 +59,14 @@ class ApplicationController < Sinatra::Base
       description: params[:description],
       price: params[:price],
       pages: params[:pages],
-      # author_name: params[:author_name],
     )
     
     author = book.author
     author.update(
       name: params[:author_name]
-      # author.save
     )
     author.to_json
     book.to_json
-    # binding.pry
-    # author = Author.find(params[:id])
-    # author.update(
-    #   name: params[:author_name],
-    #   )
-    #   author.to_json
-      # binding.pry
   end
 
   # patch "/authors/:id" do
