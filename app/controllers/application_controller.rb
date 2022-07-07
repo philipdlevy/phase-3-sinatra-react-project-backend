@@ -40,8 +40,6 @@ class ApplicationController < Sinatra::Base
     # if no, create an author and then create that book in that authors collection
     # active record associations
     author = Author.find_or_create_by(name: params[:author_name])
-    
-    # author = Author.find_by(id: params[:author_id])
 
     new_book = author.books.create(
       title: params[:title],
@@ -90,22 +88,13 @@ class ApplicationController < Sinatra::Base
     authors.to_json
   end
 
-  # get "/authors/all/name_ascending" do 
-  #   authors = Author.all.name_ascending
-  #   authors.to_json
-  # end
-  # get "/authors/all/name_descending" do 
-  #   authors = Author.all.name_descending
-  #   authors.to_json
-  # end
 
-
-  # post "/authors" do 
-  #   new_author = Author.create(
-  #     name: params[:name]
-  #   )
-  #   new_author.to_json
-  # end
+  post "/authors" do 
+    new_author = Author.create(
+      name: params[:name]
+    )
+    new_author.to_json
+  end
 
   patch "/authors/:id" do
     author = Author.find(params[:id])
