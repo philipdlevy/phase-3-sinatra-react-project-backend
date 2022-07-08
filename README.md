@@ -10,8 +10,9 @@ This is the backend for a book lister application created for FlatironSchool to 
 Fork and clone
 run bundle install
 run bundle exec rake db:migrate
+run rake db:seed to get starting data for website if desired
 run bundle exec rake server
-follow directions for frontend [url here]
+follow directions for frontend [https://github.com/philipdlevy/phase-3-react-project-frontend]
 
 
 ### LICENSING (MIT)
